@@ -82,6 +82,19 @@ das 16-bit Systemverzeichnis (C:\Windows\System\), das Windows Verzeichnis (C:\W
 
 Vor allem die Orte in der Suchreihenfolge, die rot markiert sind, können von Angreifer leicht manipuliert werden, besonders wenn diese über beliebige Schreibrechte verfügen. Kann ein Angreifer Dateien in den Anwendungsordner oder in einen der Umgebungspfadordner, der nur schwachen Berechtigungen besitzt, ablegt, so kann er die vorgesehene DLL durch eine bösartige ersetzt werden und das System kompromittieren. [4, 6]
 
+## Angriffsmöglichkeiten durch DLL-Hijacking
+
+Neben dem Angriff über die DLL-Surchorderreihenfolge gibt es auch noch die Möglichkeit über einen DLL-Sideloading Angriff.
+DLL-Sideloading ist eine zunehmend beliebte Cyber-Angriffsmethode, bei der schadhafte DLL-Dateien im Windows WinSxS-Verzeichnis durch Maleware platziert wird. Das Betriebssystem lädt anstelle der legitimen DLL-Datei die gefälschte injizierte DLL-Datei [15].
+
+<img src="./img/dll_side_loading.PNG" alt="DLL Sideloading" title="DLL Sidloading [15]" />
+
+- DLL and Applikation are in same folder: Download Folder
+- [UAC Bypass: Create another windows directory](https://medium.com/tenable-techblog/uac-bypass-by-mocking-trusted-directories-24a96675f6e)
+- Search Order: put in first path that is writeable
+
+
+
 ## Wie kann DLL Search-Order Hijacking identifiziert werden
 
 Die System Terminal Tools für Windows ermöglichen es Tiefe Einblicke in das System und die dahinterliegenden Prozesse zu erhalten. Darunter fällt auch das Process-Monitoring-Tool von Microsoft [8].
@@ -94,16 +107,7 @@ Filtering:
 - DLL die beim Starten geladen wird: VERSION.dll
 - profapi.dll
 
-## Angriffsmöglichkeiten durch DLL-Hijacking
 
-Neben dem Angriff über die DLL-Surchorderreihenfolge gibt es auch noch die Möglichkeit über einen DLL-Sideloading Angriff.
-DLL-Sideloading ist eine zunehmend beliebte Cyber-Angriffsmethode, bei der schadhafte DLL-Dateien im Windows WinSxS-Verzeichnis durch Maleware platziert wird. Das Betriebssystem lädt anstelle der legitimen DLL-Datei die gefälschte injizierte DLL-Datei [15].
-
-<img src="./img/dll_side_loading.PNG" alt="DLL Sideloading" title="DLL Sidloading [15]" />
-
-- DLL and Applikation are in same folder
-- UAC Bypass: Create anotehr windows directory
-- Search Order: put in first path that is writeable
 
 ## Maßnahmen zur Vermeidung von DLL-Hijacking
 
